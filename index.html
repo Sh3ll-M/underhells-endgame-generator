@@ -16,8 +16,48 @@
         </p>
 
         <div class="controls-row">
+          <div class="selector-group">
+            <span class="selector-label">Campaign:</span>
+            <select id="campaignMode" class="mode-select">
+              <option value="underhells">Underhells</option>
+              <option value="generic">Hive City</option>
+            </select>
+          </div>
+
+          <div class="selector-group">
+            <span class="selector-label">Players:</span>
+            <div class="skull-row">
+              <button class="skull-btn active" data-count="1" title="1 Player (Solo)">
+                <svg viewBox="0 0 24 24" width="22" height="22">
+                  <path d="M12 2C7.58 2 4 5.58 4 10c0 2.64 1.28 4.98 3.27 6.5.34.26.54.66.54 1.09V20c0 .55.45 1 1 1h6.38c.55 0 1-.45 1-1v-2.41c0-.43.2-.83.54-1.09C18.72 14.98 20 12.64 20 10c0-4.42-3.58-8-8-8zm-3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                  <path d="M14.4 22H9.6c-.53 0-.96-.4-.99-.93L8.5 20h7l-.11 1.07c-.03.53-.46.93-.99.93z" opacity="0.6"/>
+                </svg>
+              </button>
+
+              <button class="skull-btn" data-count="2" title="2 Players">
+                <svg viewBox="0 0 24 24" width="22" height="22">
+                  <path d="M12 2C7.58 2 4 5.58 4 10c0 2.64 1.28 4.98 3.27 6.5.34.26.54.66.54 1.09V20c0 .55.45 1 1 1h6.38c.55 0 1-.45 1-1v-2.41c0-.43.2-.83.54-1.09C18.72 14.98 20 12.64 20 10c0-4.42-3.58-8-8-8zm-3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                  <path d="M14.4 22H9.6c-.53 0-.96-.4-.99-.93L8.5 20h7l-.11 1.07c-.03.53-.46.93-.99.93z" opacity="0.6"/>
+                </svg>
+              </button>
+
+              <button class="skull-btn" data-count="3" title="3 Players">
+                <svg viewBox="0 0 24 24" width="22" height="22">
+                  <path d="M12 2C7.58 2 4 5.58 4 10c0 2.64 1.28 4.98 3.27 6.5.34.26.54.66.54 1.09V20c0 .55.45 1 1 1h6.38c.55 0 1-.45 1-1v-2.41c0-.43.2-.83.54-1.09C18.72 14.98 20 12.64 20 10c0-4.42-3.58-8-8-8zm-3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                  <path d="M14.4 22H9.6c-.53 0-.96-.4-.99-.93L8.5 20h7l-.11 1.07c-.03.53-.46.93-.99.93z" opacity="0.6"/>
+                </svg>
+              </button>
+
+              <button class="skull-btn" data-count="4" title="4 Players">
+                <svg viewBox="0 0 24 24" width="22" height="22">
+                  <path d="M12 2C7.58 2 4 5.58 4 10c0 2.64 1.28 4.98 3.27 6.5.34.26.54.66.54 1.09V20c0 .55.45 1 1 1h6.38c.55 0 1-.45 1-1v-2.41c0-.43.2-.83.54-1.09C18.72 14.98 20 12.64 20 10c0-4.42-3.58-8-8-8zm-3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                  <path d="M14.4 22H9.6c-.53 0-.96-.4-.99-.93L8.5 20h7l-.11 1.07c-.03.53-.46.93-.99.93z" opacity="0.6"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
           <button id="generateBtn">Generate Scenario</button>
-          <div class="hint">One click: new keywords, new final stand.</div>
         </div>
 
         <div class="keywords">
