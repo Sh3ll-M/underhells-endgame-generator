@@ -318,11 +318,7 @@ function buildScenarioHTML(env, obj, comp) {
             <span class="ferryman-icon">☠️</span>
             <span>${vornLine}</span>
           </div>
-          <div class="ferryman-credit">— Vorn Kadd, Ferryman of the Underhells</div>
-          <div class="ferryman-meta">
-            <span class="ferryman-name">Vorn Kadd</span>
-            <span class="ferryman-role"> • Ferryman of the Underhells</span>
-          </div>
+            <div class="ferryman-credit">— Vorn Kadd, Ferryman of the Underhells</div>
         </div>
       </div>
 
