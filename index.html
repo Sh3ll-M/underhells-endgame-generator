@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Underhells Endgame Scenario Generator – v3.3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/underhells_endgame_v3_3.css" />
+  </head>
+  <body>
+    <div class="app">
+      <div class="card">
+        <h1>UNDERHELLS GENERATOR</h1>
+        <p class="subtitle">
+          3-player finale scenarios for the last push into the Underhells of
+          Hive Secundus. Short, lethal, and full of horrors.
+        </p>
+
+        <div class="controls-row">
+          <button id="generateBtn">Generate Scenario</button>
+          <div class="hint">One click: new keywords, new final stand.</div>
+        </div>
+
+        <div class="keywords">
+          <div class="keyword-card">
+            <div class="keyword-label">Environment</div>
+            <div class="keyword-value" id="envName">—</div>
+            <div class="keyword-desc" id="envDesc"></div>
+          </div>
+          <div class="keyword-card">
+            <div class="keyword-label">Objective</div>
+            <div class="keyword-value" id="objName">—</div>
+            <div class="keyword-desc" id="objDesc"></div>
+          </div>
+          <div class="keyword-card">
+            <div class="keyword-label">Complication</div>
+            <div class="keyword-value" id="compName">—</div>
+            <div class="keyword-desc" id="compDesc"></div>
+          </div>
+        </div>
+
+        <div id="scenarioOutput" class="scenario">
+          <!-- Scenario content generated here -->
+        </div>
+
+        <p class="footer-note">
+          Keep starting crews small (around 6 fighters per gang) so you can
+          actually finish the game. Adjust credit / XP rewards to taste.
+        </p>
+      </div>
+    </div>
+
+    <script src="js/underhells_endgame_v3_3.js"></script>
+  </body>
+</html>
