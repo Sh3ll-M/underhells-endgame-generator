@@ -324,6 +324,19 @@ function buildScenarioHTML(env, obj, comp) {
   const mode = document.getElementById("campaignMode").value;
   const isUnderhells = (mode === "underhells");
 
+  // --- NEW: Update the main Subtitle based on mode ---
+  const subtitleEl = document.getElementById("appSubtitle");
+  if (isUnderhells) {
+    subtitleEl.textContent = "Finale scenarios for the last push into the Underhells of Hive Secundus. Short, lethal, and full of horrors.";
+  } else {
+    subtitleEl.textContent = "Standard sector engagements for gang warfare in the hive city. Capture territory, loot resources, and eliminate rivals.";
+  }
+
+  // Get player count
+  const activeSkulls = document.querySelectorAll('.skull-btn.active');
+  const lastActive = activeSkulls.length > 0 ? activeSkulls[activeSkulls.length - 1] : null;
+  const playerCount = lastActive ? lastActive.dataset.count : "1";
+
   // Mix Secondaries
   const mergedSecondaries = [
     ...(obj.secondaryObjectives || []),
@@ -332,24 +345,19 @@ function buildScenarioHTML(env, obj, comp) {
   const shuffledSecondaries = shuffle(mergedSecondaries);
   const selectedSecondaries = shuffledSecondaries.slice(0, Math.min(3, shuffledSecondaries.length));
 
-  // Intro Text
   const intro = `${env.intro} ${obj.summary}`;
-
-// --- NEW: Get player count (highest active skull) ---
-  const activeSkulls = document.querySelectorAll('.skull-btn.active');
-  const lastActive = activeSkulls.length > 0 ? activeSkulls[activeSkulls.length - 1] : null;
-  const playerCount = lastActive ? lastActive.dataset.count : "1";
 
   let headerBlock = "";
   
   if (isUnderhells) {
-    // Underhells Mode: Show Ferryman + Dynamic Player Count
+    // UNDERHELLS MODE
     const vornLine = getFerrymanQuoteForObjective(obj);
+    // Note: border-bottom is set to the pink accent (#e238a7)
     headerBlock = `
       <div class="scenario-header-block">
         <div class="scenario-header">
-          <h2 class="scenario-title">${obj.title}</h2>
-          <div class="scenario-tag">UNDERHELLS • ENDGAME • ${playerCount}-PLAYER</div>
+          <h2 class="scenario-title" style="border-bottom-color: #e238a7;">${obj.title}</h2>
+          <div class="scenario-tag">UNDERHELLS • ${playerCount}-PLAYER</div>
         </div>
         <div class="ferryman-block">
           <div class="ferryman-portrait">
@@ -367,13 +375,14 @@ function buildScenarioHTML(env, obj, comp) {
       </div>
     `;
   } else {
-    // Generic Mode: Cleaner Header + Dynamic Player Count
+    // HIVE WAR MODE
+    // Note: border-bottom is set to the green/cyan accent (#2bcf6a) to match the badge
     headerBlock = `
       <div class="scenario-header-block">
         <div class="scenario-header">
-          <h2 class="scenario-title">${obj.title}</h2>
+          <h2 class="scenario-title" style="border-bottom-color: #2bcf6a;">${obj.title}</h2>
           <div class="scenario-tag" style="background: linear-gradient(90deg, #2bcf6a 0%, #00f2ff 100%); color: #05060a;">
-            HIVE WAR • STANDARD • ${playerCount}-PLAYER
+            HIVE WAR • ${playerCount}-PLAYER
           </div>
         </div>
         <div class="intro" style="margin-top: 1rem;">${intro}</div>
@@ -381,7 +390,7 @@ function buildScenarioHTML(env, obj, comp) {
     `;
   }
 
-  // Cards Logic
+  // Cards Logic (Same as before)
   const envCard = `
     <div class="section-card">
       <div class="section-title">Battlefield & Environment</div>
@@ -415,7 +424,6 @@ function buildScenarioHTML(env, obj, comp) {
     </div>
   `;
 
-  // Only show Roaming Horrors & Crystals in Underhells mode
   let extrasCards = "";
   if (isUnderhells) {
     extrasCards = `
@@ -444,13 +452,21 @@ function buildScenarioHTML(env, obj, comp) {
 
   return headerBlock + envCard + objCard + compCard + extrasCards + endingCard;
 }
-
 // ==========================================
 // 7. GENERATOR LOGIC
 // ==========================================
 
 function generateScenario() {
   const mode = document.getElementById("campaignMode").value;
+
+  // --- NEW: Toggle Skull Colors ---
+  const skullRow = document.querySelector('.skull-row');
+  if (mode === 'generic') {
+    skullRow.classList.add('green-mode'); // Switch to Green
+  } else {
+    skullRow.classList.remove('green-mode'); // Revert to Pink
+  }
+
   let env, obj, comp;
 
   if (mode === "underhells") {

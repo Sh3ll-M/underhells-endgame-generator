@@ -2,15 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Underhells Endgame Scenario Generator – v3.3</title>
+    <title>Necromunda Scenario Generator</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path fill=%22%23E3DAC9%22 d=%22M12 2C7.58 2 4 5.58 4 10c0 2.64 1.28 4.98 3.27 6.5.34.26.54.66.54 1.09V20c0 .55.45 1 1 1h6.38c.55 0 1-.45 1-1v-2.41c0-.43.2-.83.54-1.09C18.72 14.98 20 12.64 20 10c0-4.42-3.58-8-8-8zm-3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z%22/></svg>"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/underhells_endgame_v3_3.css" />
   </head>
   <body>
     <div class="app">
       <div class="card">
-        <h1>UNDERHELLS GENERATOR</h1>
-        <p class="subtitle">
+        <h1>SCENARIO GENERATOR</h1>
+        <p class="subtitle" id="appSubtitle">
           3-player finale scenarios for the last push into the Underhells of
           Hive Secundus. Short, lethal, and full of horrors.
         </p>
@@ -20,38 +24,62 @@
             <span class="selector-label">Campaign:</span>
             <select id="campaignMode" class="mode-select">
               <option value="underhells">Underhells</option>
-              <option value="generic">Hive City</option>
+              <option value="generic">Hive War</option>
             </select>
           </div>
 
           <div class="selector-group">
             <span class="selector-label">Players:</span>
             <div class="skull-row">
-              <button class="skull-btn active" data-count="1" title="1 Player (Solo)">
+              <button
+                class="skull-btn active"
+                data-count="1"
+                title="1 Player (Solo)"
+              >
                 <svg viewBox="0 0 24 24" width="22" height="22">
-                  <path d="M12 2C7.58 2 4 5.58 4 10c0 2.64 1.28 4.98 3.27 6.5.34.26.54.66.54 1.09V20c0 .55.45 1 1 1h6.38c.55 0 1-.45 1-1v-2.41c0-.43.2-.83.54-1.09C18.72 14.98 20 12.64 20 10c0-4.42-3.58-8-8-8zm-3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
-                  <path d="M14.4 22H9.6c-.53 0-.96-.4-.99-.93L8.5 20h7l-.11 1.07c-.03.53-.46.93-.99.93z" opacity="0.6"/>
+                  <path
+                    d="M12 2C7.58 2 4 5.58 4 10c0 2.64 1.28 4.98 3.27 6.5.34.26.54.66.54 1.09V20c0 .55.45 1 1 1h6.38c.55 0 1-.45 1-1v-2.41c0-.43.2-.83.54-1.09C18.72 14.98 20 12.64 20 10c0-4.42-3.58-8-8-8zm-3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+                  />
+                  <path
+                    d="M14.4 22H9.6c-.53 0-.96-.4-.99-.93L8.5 20h7l-.11 1.07c-.03.53-.46.93-.99.93z"
+                    opacity="0.6"
+                  />
                 </svg>
               </button>
 
               <button class="skull-btn" data-count="2" title="2 Players">
                 <svg viewBox="0 0 24 24" width="22" height="22">
-                  <path d="M12 2C7.58 2 4 5.58 4 10c0 2.64 1.28 4.98 3.27 6.5.34.26.54.66.54 1.09V20c0 .55.45 1 1 1h6.38c.55 0 1-.45 1-1v-2.41c0-.43.2-.83.54-1.09C18.72 14.98 20 12.64 20 10c0-4.42-3.58-8-8-8zm-3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
-                  <path d="M14.4 22H9.6c-.53 0-.96-.4-.99-.93L8.5 20h7l-.11 1.07c-.03.53-.46.93-.99.93z" opacity="0.6"/>
+                  <path
+                    d="M12 2C7.58 2 4 5.58 4 10c0 2.64 1.28 4.98 3.27 6.5.34.26.54.66.54 1.09V20c0 .55.45 1 1 1h6.38c.55 0 1-.45 1-1v-2.41c0-.43.2-.83.54-1.09C18.72 14.98 20 12.64 20 10c0-4.42-3.58-8-8-8zm-3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+                  />
+                  <path
+                    d="M14.4 22H9.6c-.53 0-.96-.4-.99-.93L8.5 20h7l-.11 1.07c-.03.53-.46.93-.99.93z"
+                    opacity="0.6"
+                  />
                 </svg>
               </button>
 
               <button class="skull-btn" data-count="3" title="3 Players">
                 <svg viewBox="0 0 24 24" width="22" height="22">
-                  <path d="M12 2C7.58 2 4 5.58 4 10c0 2.64 1.28 4.98 3.27 6.5.34.26.54.66.54 1.09V20c0 .55.45 1 1 1h6.38c.55 0 1-.45 1-1v-2.41c0-.43.2-.83.54-1.09C18.72 14.98 20 12.64 20 10c0-4.42-3.58-8-8-8zm-3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
-                  <path d="M14.4 22H9.6c-.53 0-.96-.4-.99-.93L8.5 20h7l-.11 1.07c-.03.53-.46.93-.99.93z" opacity="0.6"/>
+                  <path
+                    d="M12 2C7.58 2 4 5.58 4 10c0 2.64 1.28 4.98 3.27 6.5.34.26.54.66.54 1.09V20c0 .55.45 1 1 1h6.38c.55 0 1-.45 1-1v-2.41c0-.43.2-.83.54-1.09C18.72 14.98 20 12.64 20 10c0-4.42-3.58-8-8-8zm-3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+                  />
+                  <path
+                    d="M14.4 22H9.6c-.53 0-.96-.4-.99-.93L8.5 20h7l-.11 1.07c-.03.53-.46.93-.99.93z"
+                    opacity="0.6"
+                  />
                 </svg>
               </button>
 
               <button class="skull-btn" data-count="4" title="4 Players">
                 <svg viewBox="0 0 24 24" width="22" height="22">
-                  <path d="M12 2C7.58 2 4 5.58 4 10c0 2.64 1.28 4.98 3.27 6.5.34.26.54.66.54 1.09V20c0 .55.45 1 1 1h6.38c.55 0 1-.45 1-1v-2.41c0-.43.2-.83.54-1.09C18.72 14.98 20 12.64 20 10c0-4.42-3.58-8-8-8zm-3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
-                  <path d="M14.4 22H9.6c-.53 0-.96-.4-.99-.93L8.5 20h7l-.11 1.07c-.03.53-.46.93-.99.93z" opacity="0.6"/>
+                  <path
+                    d="M12 2C7.58 2 4 5.58 4 10c0 2.64 1.28 4.98 3.27 6.5.34.26.54.66.54 1.09V20c0 .55.45 1 1 1h6.38c.55 0 1-.45 1-1v-2.41c0-.43.2-.83.54-1.09C18.72 14.98 20 12.64 20 10c0-4.42-3.58-8-8-8zm-3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+                  />
+                  <path
+                    d="M14.4 22H9.6c-.53 0-.96-.4-.99-.93L8.5 20h7l-.11 1.07c-.03.53-.46.93-.99.93z"
+                    opacity="0.6"
+                  />
                 </svg>
               </button>
             </div>
