@@ -378,3 +378,14 @@ ul {
 .skull-btn.active svg path {
   fill: #e238a7;
 }
+
+/* --- THEME OVERRIDES --- */
+
+/* Green Mode (Hive War) - Overrides the default Pink */
+.skull-row.green-mode .skull-btn.active {
+  filter: drop-shadow(0 0 5px #2bcf6a); /* Green Glow */
+}
+
+.skull-row.green-mode .skull-btn.active svg path {
+  fill: #2bcf6a; /* Green Icon */
+}
