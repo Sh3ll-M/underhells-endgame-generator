@@ -1,274 +1,298 @@
-// Underhells Endgame v3.3 generator script
-// Extracted from original HTML and externalised for canonical structure
+// Underhells Endgame v3.5 - Multi-Mode Generator
 
-// ========= CONSTANT CAMPAIGN RULES (USED IN TEXT ONLY) =========
+// ==========================================
+// 1. STATIC HTML BLOCKS (Underhells Specific)
+// ==========================================
 
 const roamingHorrorsHTML = `
   <ul>
     <li><strong>Spawn Points:</strong> Before deploying gangs, place 4–6 Horror Spawn markers around the battlefield, mostly near the mid-board but not in deployment zones. Number them 1–6.</li>
     <li><strong>Spawning:</strong> At the start of each End phase, the player with Priority rolls a D6. On a 4+, D3 Roaming Horrors arrive. Roll a D6 for each to see which Spawn point they crawl out of and place them within 1" of that marker.</li>
-    <li><strong>Activation:</strong> After a player finishes activating a fighter, they must activate one Horror (if any remain unactivated this round) before the next player activates a fighter. Control passes around the table, but Horrors always follow their nature – cautious shooters hang back, aggressive beasts charge the nearest non-Horror fighter.</li>
-    <li><strong>Defeating Horrors:</strong> Horrors are removed as soon as an Injury dice would normally be rolled for them. They give XP and count as kills at a level agreed by your Arbitrator (brood scum as gangers, big beasts as champions, etc.).</li>
+    <li><strong>Activation:</strong> After a player finishes activating a fighter, they must activate one Horror (if any remain unactivated this round) before the next player activates a fighter.</li>
+    <li><strong>Defeating Horrors:</strong> Horrors are removed as soon as an Injury dice would normally be rolled for them. They give XP and count as kills as agreed by your Arbitrator.</li>
   </ul>
 `;
 
 const dataCrystalHTML = `
   <ul>
-    <li><strong>Placing Stacks:</strong> Each gang places one Data Crystal Stack outside their own deployment zone before crews are deployed. Place them in positions worth fighting over – open plazas, junctions, or near central cover.</li>
-    <li><strong>Harvest Data Crystal (Basic):</strong> A fighter within 1" of a Stack may attempt to harvest once per activation. They make an Intelligence test; on a success they take a Data Crystal token. On a failure, they disturb the brood – add +1 to the next Roaming Horrors spawn roll.</li>
-    <li><strong>Fragile Structure:</strong> When a Stack is hit by a weapon with the Blaze or Blast traits, roll a D6:
-      <ul>
-        <li>1 – Catastrophic Burst: Everything within a short radius (for example, D3+3") takes a strong hit and is Pinned. That Stack cannot be harvested again.</li>
-        <li>2–3 – Partial Detonation: Models within 3" take a weaker hit and are Pinned. Future Harvest attempts from that Stack suffer –1 to the Intelligence test.</li>
-        <li>4–6 – Glowing but Stable: No extra effect… this time.</li>
-      </ul>
-    </li>
-    <li><strong>Carrying Crystals:</strong> A fighter can carry only one Crystal. If they go Out of Action, place the token where they fell. Other fighters can pick it up by ending their move in base contact.</li>
-    <li><strong>After the Battle:</strong> Crystals can be cashed in for credits, XP or random skills according to your campaign’s Data Crystal rewards table, or a simplified version agreed at the table.</li>
+    <li><strong>Placing Stacks:</strong> Each gang places one Data Crystal Stack outside their own deployment zone before crews are deployed.</li>
+    <li><strong>Harvest Data Crystal (Basic):</strong> A fighter within 1" of a Stack may attempt to harvest once per activation. Pass an Intelligence test to take a Data Crystal token. Fail, and add +1 to the next Roaming Horrors spawn roll.</li>
+    <li><strong>Fragile Structure:</strong> When a Stack is hit by Blaze or Blast, roll a D6: 1=Explodes (S4 hit), 2-3=Small blast, 4-6=Safe.</li>
+    <li><strong>Carrying Crystals:</strong> A fighter can carry one Crystal. If they go Out of Action, place the token where they fell.</li>
   </ul>
 `;
 
-// ========= RANDOM TABLES – ENDGAME UNDERHELLS =========
+// ==========================================
+// 2. DATASETS: UNDERHELLS (Your Original Data)
+// ==========================================
 
-const environments = [
+const underhells_environments = [
   {
-    key: "data_plaza",
     name: "Collapsed Data Plaza",
     short: "Central plaza choked with broken crystal pylons and rubble.",
-    intro: `The old plaza once served as a nexus for the vault’s data flows, its crystalline pylons now jutting from the rubble like broken teeth. Every fragment still hums with psychic residue, a lure to the Broodmind.`,
-    deployment3p: `Set up a mostly flat board with a central open plaza roughly 12" across, filled with low scatter terrain and at least one larger 'data pylon' feature. Each gang chooses a different table edge and deploys within 6" of their edge and at least 10" from the plaza’s centre.`,
-    crewNote: `Each gang selects up to 6 fighters for their starting crew using any method your Arbitrator allows. Reinforcements are only used if you all agree before the battle.`
+    intro: `The old plaza once served as a nexus for the vault’s data flows, its crystalline pylons now jutting from the rubble like broken teeth. Every fragment still hums with psychic residue.`,
+    deployment3p: `Central open plaza (12" wide). Each gang deploys within 6" of a different table edge, at least 10" from the center.`,
+    crewNote: `Custom Selection (6 fighters).`
   },
   {
-    key: "sump_gallery",
     name: "Sump Gallery Junction",
     short: "Criss-crossing walkways around a wide sump pool.",
     intro: `Rust-streaked galleries and makeshift bridges ring a black sump pit. Somewhere in the dark beneath the surface, something vast moves whenever blood hits the water.`,
-    deployment3p: `Lay out a broad sump pool or low area in the centre of the board with at least three walkways or wide pipes crossing it at ground level. Each gang deploys within 8" of a different table edge, at least 6" away from the sump edge.`,
-    crewNote: `Each gang fields up to 6 fighters. If you want to keep things fast, avoid pets, brutes and hangers-on for this one.`
+    deployment3p: `Central sump pool. Gangs deploy within 8" of different table edges, avoiding the sump.`,
+    crewNote: `Custom Selection (6 fighters).`
   },
   {
-    key: "pump_corridor",
     name: "Pump Corridor",
     short: "Long, straight kill-zone blocked by massive pumping engines.",
-    intro: `A long maintenance corridor runs between thudding pump housings, the floor buckling from constant tremors. It’s one of the last stable routes still leading deeper into the brood’s nest – and everyone knows it.`,
-    deployment3p: `Set up a mostly flat table with a clear 'corridor' lane running along the long axis, broken by large pump or generator pieces. One gang deploys at one short edge within 8"; the other two deploy along opposite long edges within 6" of their edge and 10" from the short edge gang’s deployment zone.`,
-    crewNote: `Each gang selects up to 5–6 fighters. Narrow lanes make template weapons and careful positioning very valuable.`
+    intro: `A long maintenance corridor runs between thudding pump housings. It’s one of the last stable routes leading deeper into the brood’s nest.`,
+    deployment3p: `Long table axis. One gang on a short edge; two gangs on opposite long edges.`,
+    crewNote: `Custom Selection (6 fighters).`
   },
   {
-    key: "fungal_square",
     name: "Fungal Transit Square",
     short: "Open square choked with phosphorescent fungi and broken transports.",
-    intro: `Abandoned transports sit half-submerged in fungal overgrowth, their hulls split open and interiors thick with growths that pulse faintly in time with the hive’s shuddering heartbeat.`,
-    deployment3p: `Create an open 'square' in the middle of the battlefield, filled with wrecked vehicles or cargo and several dense fungal patches that block line of sight. Each gang deploys in a 6"-deep zone along a different table edge.`,
-    crewNote: `Each gang uses up to 6 fighters. Fighting is likely to be close-range and vicious as fighters circle the square and duck through fungal cover.`
+    intro: `Abandoned transports sit half-submerged in fungal overgrowth, their hulls split open and interiors thick with growths that pulse faintly.`,
+    deployment3p: `Central square with dense fungal cover. Gangs deploy in 6" zones on different edges.`,
+    crewNote: `Custom Selection (6 fighters).`
   },
   {
-    key: "lift_concourse",
     name: "Lift Concourse",
     short: "Central raised platform with ramps and surrounding concourse.",
-    intro: `Once, workers queued here for the lifts up-hive. Now the concourse is cracked and listing, the central platform hanging over a shaft that exhales cold, damp air and distant screams.`,
-    deployment3p: `Place a single raised platform or dais near the centre of the table with at least two ramps or stairs leading up to it. Surround it with mostly flat ground and low cover. Each gang deploys within 6" of a different table corner, at least 8" from the central platform.`,
-    crewNote: `Each gang selects up to 6 fighters. The central platform is key – controlling it is dangerous but powerful.`
+    intro: `Once, workers queued here for the lifts. Now the concourse is cracked, the central platform hanging over a shaft that exhales cold, damp air.`,
+    deployment3p: `Central raised platform. Gangs deploy within 6" of different table corners.`,
+    crewNote: `Custom Selection (6 fighters).`
   }
 ];
 
-const objectives = [
+const underhells_objectives = [
   {
-    key: "last_crystals",
     category: "loot",
     title: "The Last Crystals",
     label: "Secure the Data Cache",
-    short: "Grab as many crystals as possible before the sector collapses.",
-    summary: `The gangs have reached one of the last intact crystal caches in this section of the Underhells. Every shard could tilt the war – or feed the Patriarch faster.`,
-    primaryObjective: [
-      `At the end of the battle, the gang holding (on fighters or in base contact) the most Data Crystals is victorious.`
-    ],
-    secondaryObjectives: [
-      `First Haul: Be the first gang to successfully harvest a Data Crystal.`,
-      `Don't Drop It: End the battle without losing a Data Crystal you were carrying (if you carried one at all).`,
-      `Deny the Hoard: Take Out of Action the last fighter from an opposing gang that harvested a Data Crystal.`
-    ],
-    rewardNote: `The winning gang may receive extra Exploration or campaign rewards for each two Crystals extracted, as agreed by the Arbitrator.`
+    short: "Grab as many crystals as possible.",
+    summary: `The gangs have reached one of the last intact crystal caches. Every shard could tilt the war – or feed the Patriarch faster.`,
+    primaryObjective: [`The gang holding the most Data Crystals at the end of the battle wins.`],
+    secondaryObjectives: [`First Haul`, `Don't Drop It`, `Deny the Hoard`],
+    rewardNote: `Winner gains 2 Exploration points.`
   },
   {
-    key: "hold_breach",
     category: "hold",
     title: "Hold the Breach",
     label: "Control the Kill Zone",
     short: "Hold the only gap standing between you and the swarm.",
-    summary: `A crumbling bulkhead marks the line beyond which the Underhells are lost. As horrors batter at the far side, the gangs fight to prove they are the ones who can hold the breach – or die trying.`,
-    primaryObjective: [
-      `At the end of the battle, the gang with the most Standing and Pinned fighters within 6" of the designated Breach marker is victorious.`
-    ],
-    secondaryObjectives: [
-      `First into the Fire: Be the first gang to move a fighter into the Breach area.`,
-      `Unbroken Line: At the end of any End phase, be the only gang with any fighters in the Breach area.`,
-      `No Retreat: End the battle without voluntarily moving any of your fighters off the battlefield.`
-    ],
-    rewardNote: `The winning gang’s Leader may gain bonus XP or Reputation for the stand, as agreed by the Arbitrator.`
+    summary: `A crumbling bulkhead marks the line beyond which the Underhells are lost. The gangs fight to prove they are the ones who can hold the breach.`,
+    primaryObjective: [`The gang with the most fighters within 6" of the Breach marker wins.`],
+    secondaryObjectives: [`First into the Fire`, `Unbroken Line`, `No Retreat`],
+    rewardNote: `Leader gains bonus XP.`
   },
   {
-    key: "escape_sector",
     category: "escape",
     title: "Choked Escape",
     label: "Escape the Dying Sector",
     short: "Find a way out and get bodies off the board.",
-    summary: `Collapsing tunnels and psychic shrieks mark this area as lost. The gangs claw at sealed doors and forgotten access hatches, trying to force a way out before the whole level drops into the Sump.`,
-    primaryObjective: [
-      `When the battle ends, the gang that has moved the most fighters off the battlefield via discovered exits is victorious.`
-    ],
-    secondaryObjectives: [
-      `Pathfinder: Be the first gang to discover a valid exit using whatever Scout-style action your group agrees on.`,
-      `Last Through: Have at least one fighter escape during the final round of the battle.`,
-      `Guided Column: Have a single fighter lead at least two other fighters from your gang off the table over the course of the game (all three must escape).`
-    ],
-    rewardNote: `Escaped fighters may gain bonus XP; those left behind might face harsher post-battle consequences.`
+    summary: `Collapsing tunnels and psychic shrieks mark this area as lost. The gangs claw at sealed doors trying to force a way out.`,
+    primaryObjective: [`The gang that moves the most fighters off the board via exits wins.`],
+    secondaryObjectives: [`Pathfinder`, `Last Through`, `Guided Column`],
+    rewardNote: `Escaped fighters avoid lasting injuries.`
   },
   {
-    key: "cull_brood",
     category: "cull",
     title: "Cull the Swarm",
     label: "Slaughter Roaming Horrors",
     short: "Race to rack up kills on the brood’s servants.",
-    summary: `If the swarm isn’t thinned here, it will break through somewhere much more important. The gangs descend into the choke point to see who can butcher the most horrors before the route is overrun.`,
-    primaryObjective: [
-      `At the end of the battle, the gang with the most Victory Points from destroying Roaming Horrors (count big monsters as worth more) is victorious.`
-    ],
-    secondaryObjectives: [
-      `First Blooded Horror: Destroy the first Roaming Horror placed on the table.`,
-      `Efficient Killer: Have one of your fighters personally destroy at least 3 Horrors during the battle.`,
-      `Collateral Damage: In a single round, destroy at least one Horror and take at least one enemy fighter Out of Action.`
-    ],
-    rewardNote: `The winning gang may gain extra Exploration or campaign bonuses for stabilising this approach.`
+    summary: `If the swarm isn’t thinned here, it will break through. The gangs descend to see who can butcher the most horrors.`,
+    primaryObjective: [`The gang with the most Victory Points from destroying Roaming Horrors wins.`],
+    secondaryObjectives: [`First Blooded`, `Efficient Killer`, `Collateral Damage`],
+    rewardNote: `Bonus Exploration for high kill counts.`
   },
   {
-    key: "grave_salvage",
     category: "loot",
     title: "Grave-Salvage",
     label: "Loot the Dead",
-    short: "Strip a wrecked encampment before it sinks into the dark.",
-    summary: `An old Archeo-hunter camp is sinking into the lower levels, its perimeter torn apart by the brood. What’s left inside could keep a gang alive for another cycle – if they can grab it under the Broodmind’s gaze.`,
-    primaryObjective: [
-      `At the end of the battle, total the value of Loot-type objectives each gang controls or is carrying. The gang with the highest total is victorious.`
-    ],
-    secondaryObjectives: [
-      `Under Fire: Successfully loot an objective while within 6" of an enemy fighter.`,
-      `Pack Mules: End the game with at least three of your fighters each carrying a Loot item or Data Crystal.`,
-      `Leave Only Shells: Ensure no unclaimed Loot markers remain on the table when the battle ends.`
-    ],
-    rewardNote: `Loot can be converted into credits or Underhells campaign boons as agreed at the table.`
+    short: "Strip a wrecked encampment before it sinks.",
+    summary: `An old Archeo-hunter camp is sinking into the lower levels. What’s left inside could keep a gang alive for another cycle.`,
+    primaryObjective: [`The gang controlling the most Loot tokens wins.`],
+    secondaryObjectives: [`Under Fire`, `Pack Mules`, `Leave Only Shells`],
+    rewardNote: `Loot can be converted to Credits.`
   }
 ];
 
-const complications = [
+const underhells_complications = [
   {
-    key: "broodmind_pulse",
     name: "Broodmind Pulse",
-    short: "Psychic waves unsettle fighters and draw more horrors.",
-    summary: `The Broodmind’s attention lashes this sector, sending waves of panic and murderous certainty through every exposed mind.`,
-    specialRules: [
-      `Warp-Touched: At the start of each round after the first, each gang nominates one fighter on the battlefield. That fighter must take a Willpower or Cool check (whichever is worse). On a fail, they suffer some form of Insanity or debilitating effect agreed by the group (e.g. must move towards the nearest enemy, or loses one action this round).`,
-      `Hungry Gaze: The first time each round that any fighter fails a test to Harvest, Search or otherwise interact with objectives, add +1 to the next Roaming Horrors spawn roll.`
-    ],
-    secondaryExtras: [
-      `Stare it Down: Score a bonus secondary if none of your fighters fail their Broodmind checks in a single round while at least one opposing gang suffers from it.`
-    ]
+    short: "Psychic waves unsettle fighters.",
+    summary: "The Broodmind’s attention lashes this sector, sending waves of panic through every exposed mind.",
+    specialRules: [`Warp-Touched: Start of round, one fighter per gang tests Willpower or becomes Insane.`, `Hungry Gaze: Failed objective tests increase Horror spawn rates.`],
+    secondaryExtras: [`Stare it Down`]
   },
   {
-    key: "toxic_flood",
     name: "Toxic Flood",
-    short: "Rising sludge and fumes make low ground lethal.",
-    summary: `Cracked sump lines and ruptured pipes belch toxic filth into the level, forcing the gangs to fight for whatever patches of ground still sit above the creeping tide.`,
-    specialRules: [
-      `Rising Tide: Mark the lowest parts of the board as Flooded from Round 2 onwards. At the start of each subsequent round, the Flooded area expands a little (for example, D3" further in from the table edges or up any ramps).`,
-      `Corrosive Mire: Fighters starting their activation in the Flooded zone must pass a Toughness test or suffer a hit agreed by the group (such as a S3 Toxin hit). Respirators or sealed armour may grant a re-roll.`
-    ],
-    secondaryExtras: [
-      `High and Dry: Score a bonus secondary if none of your fighters are in the Flooded zone when the battle ends.`
-    ]
+    short: "Rising sludge makes low ground lethal.",
+    summary: "Cracked sump lines belch toxic filth, forcing gangs to fight for high ground.",
+    specialRules: [`Rising Tide: The floor level floods from Round 2.`, `Corrosive Mire: End activation in water? Test Toughness or take a hit.`],
+    secondaryExtras: [`High and Dry`]
   },
   {
-    key: "ammo_shortage",
     name: "Ammo Gone Dry",
-    short: "Supplies are nearly exhausted; every shot matters.",
-    summary: `Weeks of constant fighting have burned through the gangs’ reserves. What little ammo remains is scavenged from the dead or pulled from warped, half-melted crates.`,
-    specialRules: [
-      `Low Stores: At the start of the battle, each gang chooses three fighters. Those fighters treat all basic and special weapons as if they had the Scarce trait for this game (or simply suffer an additional –1 on Ammo rolls, as you prefer).`,
-      `Dangerous Reloads: The first time each round that a fighter fails an Ammo check using a Blast, Blaze or Unstable weapon, add +1 to any associated Mishap-style rolls or treat the failure as especially dangerous in a way your group agrees.`
-    ],
-    secondaryExtras: [
-      `Make It Count: Score a bonus secondary if one of your 'low stores' fighters takes at least two enemy fighters Out of Action with shooting during the battle.`
-    ]
+    short: "Supplies are exhausted; every shot matters.",
+    summary: "Weeks of fighting have burned reserves. Weapons are failing.",
+    specialRules: [`Low Stores: 3 fighters per gang count as having Scarce weapons.`, `Dangerous Reloads: Failed Ammo checks cause automatic wounds.`],
+    secondaryExtras: [`Make It Count`]
   },
   {
-    key: "hive_quake",
     name: "Hive Quake",
-    short: "Tremors threaten to throw fighters off their feet.",
-    summary: `The foundations of the hive groan as entire domes collapse somewhere below. Shockwaves ripple through the floor, turning the fight into a stumbling brawl in dim light.`,
-    specialRules: [
-      `Tremors: At the start of each round, roll a D6. On a 1–2, all Standing fighters must take an Initiative check or become Prone and Pinned. Fighters on narrow walkways or along the edge of pits may risk falling as agreed by the players.`,
-      `Shifting Ground: During a Tremor round, treat Difficult terrain as Dangerous for the purpose of falls or tests.`
-    ],
-    secondaryExtras: [
-      `Riding the Wave: Score a bonus secondary if one of your fighters remains Standing after a Tremor round while at least one enemy fighter falls or is Pinned by it.`
-    ]
+    short: "Tremors threaten to throw fighters down.",
+    summary: "The foundations groan. Shockwaves ripple through the floor.",
+    specialRules: [`Tremors: Start of round (4+), test Initiative or be Pinned.`, `Shifting Ground: Difficult terrain counts as Dangerous.`],
+    secondaryExtras: [`Riding the Wave`]
   },
   {
-    key: "blackout",
     name: "Stygian Blackout",
-    short: "Light dies; everything is knife-fight range.",
-    summary: `Lights blow out one by one as power couplings overload. Only gunfire and burning crystal shards give any hint of where enemies or horrors are coming from.`,
-    specialRules: [
-      `Choking Dark: From the start of the battle, treat visibility as limited to around 9" unless fighters are close to light sources, have special optics, or your terrain clearly represents lit areas.`,
-      `From the Shadows: If a fighter begins their activation completely out of line of sight of all enemy fighters, they may gain a small bonus to a Charge or similar closing action that round, as agreed by the table.`
-    ],
-    secondaryExtras: [
-      `Strike from the Dark: Score a bonus secondary if you take an enemy fighter Out of Action with an attack made after starting your activation outside their line of sight.`
-    ]
+    short: "Light dies; knife-fight range only.",
+    summary: "Lights blow out. Only muzzle flashes illuminate the dark.",
+    specialRules: [`Choking Dark: Visibility limited to 12".`, `From the Shadows: Bonus XP for melee kills started from darkness.`],
+    secondaryExtras: [`Strike from the Dark`]
   }
 ];
 
-// ========= FERRYMAN QUOTES =========
+// ==========================================
+// 3. DATASETS: GENERIC HIVE (New Rob-Friendly Data)
+// ==========================================
+
+const generic_environments = [
+  {
+    name: "Abandoned Hab Block",
+    short: "Tight corridors and vertical choke points.",
+    intro: "A standard residential block, long since stripped of value. The fighting here is close, brutal, and vertical.",
+    deployment3p: "Standard Deployment: Gangs deploy within 6\" of different board edges.",
+    crewNote: "Standard Crew Selection (Custom)."
+  },
+  {
+    name: "Slag Canyon",
+    short: "Open ground with hazardous industrial waste.",
+    intro: "Molten runoff has cooled into razor-sharp ridges. Cover is scarce, and falling is lethal.",
+    deployment3p: "Corner Deployment: Pick a corner, stay 12\" from the center.",
+    crewNote: "Standard Crew Selection (Custom)."
+  },
+  {
+    name: "Market Cross",
+    short: "Dense scatter terrain and stalls.",
+    intro: "A maze of stalls and crates. Line of sight is blocked everywhere.",
+    deployment3p: "Stand-off: Deploy on opposite long edges.",
+    crewNote: "Standard Crew Selection (Custom)."
+  },
+  {
+    name: "Manufactorum Floor",
+    short: "Heavy machinery and moving parts.",
+    intro: "Massive conveyors and presses dominate the area. The noise is deafening.",
+    deployment3p: "Split Deployment: Divide gang into two groups on opposite corners.",
+    crewNote: "Standard Crew Selection (Custom)."
+  }
+];
+
+const generic_objectives = [
+  {
+    category: "generic",
+    title: "Gang Fight",
+    label: "Elimination",
+    short: "Drive the enemy off.",
+    summary: "No fancy tricks. Just drive them off your turf.",
+    primaryObjective: ["The last gang with models on the board wins."],
+    secondaryObjectives: ["First Blood", "Leader Kill", "Last Man Standing"],
+    rewardNote: "Standard Turf rewards."
+  },
+  {
+    category: "loot",
+    title: "Smash and Grab",
+    label: "Loot Crates",
+    short: "Grab the loot and run.",
+    summary: "Several high-value caches have been identified in the area.",
+    primaryObjective: ["The gang that loots (removes) the most crates wins."],
+    secondaryObjectives: ["Open 3 Crates", "Deny the Enemy"],
+    rewardNote: "D3x10 Credits per crate looted."
+  },
+  {
+    category: "hold",
+    title: "King of the Spire",
+    label: "Hold Ground",
+    short: "Control the highest point.",
+    summary: "There is a prime vantage point in this sector. We need it.",
+    primaryObjective: ["Score 1 VP per round for controlling the central terrain piece."],
+    secondaryObjectives: ["Hold at End Game", "Clear the Summit"],
+    rewardNote: "+1 Reputation."
+  },
+  {
+    category: "generic",
+    title: "The Hit",
+    label: "Assassination",
+    short: "Kill the enemy Leader.",
+    summary: "Word is the enemy boss is vulnerable. Take them out.",
+    primaryObjective: ["3 VP for taking an enemy Leader Out of Action. 1 VP for Champs."],
+    secondaryObjectives: ["Personal Kill", "Humiliation (Coup de Grace)"],
+    rewardNote: "Bonus XP for the killer."
+  }
+];
+
+const generic_complications = [
+  {
+    name: "Pitch Black",
+    short: "The lights have failed.",
+    summary: "Fighting in total darkness.",
+    specialRules: ["Visibility is limited to 3\". Fighters with photo-goggles ignore this rule."],
+    secondaryExtras: ["Surprise Attack"]
+  },
+  {
+    name: "Hive Quake",
+    short: "The floor is shaking.",
+    summary: "Massive machinery nearby is causing tremors.",
+    specialRules: ["Every turn roll D6. On 5+, everyone tests Initiative or falls Prone."],
+    secondaryExtras: ["Steady Footing"]
+  },
+  {
+    name: "Bad Air",
+    short: "Toxic fumes are rising.",
+    summary: "The ventilation fans have died.",
+    specialRules: ["Toughness tests required if you end a move on the ground level."],
+    secondaryExtras: ["High Ground"]
+  },
+  {
+    name: "Clear Conditions",
+    short: "No unusual events.",
+    summary: "For once, the Hive is quiet. Too quiet.",
+    specialRules: ["None. Play a standard game."],
+    secondaryExtras: ["Standard Execution"]
+  }
+];
+
+// ==========================================
+// 4. FERRYMAN QUOTES (Used only in Underhells mode)
+// ==========================================
 const ferrymanQuotes = {
   loot: [
     "You find something shiny down here, it’s either cursed or claimed. Usually both.",
-    "I once tried selling a crystal I found in the Underhells. Turns out it was selling me.",
-    "Pick fast, shoot faster. Everything in the dark’s got longer arms than you.",
-    "Salvage is what the survivors call grave-robbing.",
-    "Never pocket something that hums. Learned that one the expensive way."
+    "I once tried selling a crystal I found in the Underhells. Turns out it was selling me."
   ],
   hold: [
     "If you think holding ground’s hard, try doing it while the ground’s holding back.",
-    "The trick to surviving a stand? Don’t.",
-    "Walls don’t care who bleeds on them, so long as someone does.",
-    "They say no one’s ever held the Breach. They ain’t met me.",
-    "Keep your head down and your gun hot. The rest is heresy."
+    "Walls don’t care who bleeds on them, so long as someone does."
   ],
   escape: [
     "You want out? Then you better run like the dark owes you money.",
-    "Never trust a door that opens too easy. Or a friend who does.",
-    "You’ll smell freedom right before the sump gas hits.",
-    "There’s no up in the Underhells. Just slower ways to go down.",
-    "First one to the lift lives long enough to regret it."
+    "There’s no up in the Underhells. Just slower ways to go down."
   ],
   cull: [
     "I’ve seen things with more teeth than sense. Same goes for gangers.",
-    "You kill one horror, and ten come sniffing for the noise. Fair trade.",
-    "Nothing personal, brood-thing. Just professional.",
-    "If it bleeds, it’s probably breeding.",
-    "Hunting horrors is easy. Stopping is the hard part."
+    "You kill one horror, and ten come sniffing for the noise. Fair trade."
   ],
   generic: [
-    "If it smells like hope, it’s probably gas. Don’t breathe it in.",
-    "Underhells don’t kill you quick — they wait ‘til you start thinking you’ll make it.",
-    "Never trust anything that hums back when you swear at it.",
-    "If you can hear them in the walls, you’re already too late.",
+    "If it smells like hope, it’s probably gas.",
     "Down here, the only thing stable is death."
   ]
 };
 
-// ========= HELPERS =========
+// ==========================================
+// 5. HELPER FUNCTIONS
+// ==========================================
 
 function pickRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -291,7 +315,16 @@ function getFerrymanQuoteForObjective(obj) {
   return pickRandom(pool);
 }
 
+// ==========================================
+// 6. MAIN BUILDER
+// ==========================================
+
 function buildScenarioHTML(env, obj, comp) {
+  // Determine Mode
+  const mode = document.getElementById("campaignMode").value;
+  const isUnderhells = (mode === "underhells");
+
+  // Mix Secondaries
   const mergedSecondaries = [
     ...(obj.secondaryObjectives || []),
     ...(comp.secondaryExtras || [])
@@ -299,102 +332,139 @@ function buildScenarioHTML(env, obj, comp) {
   const shuffledSecondaries = shuffle(mergedSecondaries);
   const selectedSecondaries = shuffledSecondaries.slice(0, Math.min(3, shuffledSecondaries.length));
 
+  // Intro Text
   const intro = `${env.intro} ${obj.summary}`;
-  const vornLine = getFerrymanQuoteForObjective(obj);
 
-  return `
-    <div class="scenario-header-block">
-      <div class="scenario-header">
-        <h2 class="scenario-title">${obj.title}</h2>
-        <div class="scenario-tag">UNDERHELLS • ENDGAME • 3-PLAYER</div>
-      </div>
+// --- NEW: Get player count (highest active skull) ---
+  const activeSkulls = document.querySelectorAll('.skull-btn.active');
+  const lastActive = activeSkulls.length > 0 ? activeSkulls[activeSkulls.length - 1] : null;
+  const playerCount = lastActive ? lastActive.dataset.count : "1";
 
-      <div class="ferryman-block">
-        <div class="ferryman-portrait">
-          <img src="assets/vorn-kadd.png" alt="Vorn Kadd, Ferryman of the Underhells" />
+  let headerBlock = "";
+  
+  if (isUnderhells) {
+    // Underhells Mode: Show Ferryman + Dynamic Player Count
+    const vornLine = getFerrymanQuoteForObjective(obj);
+    headerBlock = `
+      <div class="scenario-header-block">
+        <div class="scenario-header">
+          <h2 class="scenario-title">${obj.title}</h2>
+          <div class="scenario-tag">UNDERHELLS • ENDGAME • ${playerCount}-PLAYER</div>
         </div>
-        <div class="ferryman-quote-box">
-          <div class="ferryman-quote">
-            <span class="ferryman-icon">☠️</span>
-            <span>${vornLine}</span>
+        <div class="ferryman-block">
+          <div class="ferryman-portrait">
+            <img src="assets/vorn-kadd.png" alt="Vorn Kadd" />
           </div>
+          <div class="ferryman-quote-box">
+            <div class="ferryman-quote">
+              <span class="ferryman-icon">☠️</span>
+              <span>${vornLine}</span>
+            </div>
             <div class="ferryman-credit">— Vorn Kadd, Ferryman of the Underhells</div>
+          </div>
         </div>
+        <div class="intro">${intro}</div>
       </div>
+    `;
+  } else {
+    // Generic Mode: Cleaner Header + Dynamic Player Count
+    headerBlock = `
+      <div class="scenario-header-block">
+        <div class="scenario-header">
+          <h2 class="scenario-title">${obj.title}</h2>
+          <div class="scenario-tag" style="background: linear-gradient(90deg, #2bcf6a 0%, #00f2ff 100%); color: #05060a;">
+            HIVE WAR • STANDARD • ${playerCount}-PLAYER
+          </div>
+        </div>
+        <div class="intro" style="margin-top: 1rem;">${intro}</div>
+      </div>
+    `;
+  }
 
-      <div class="intro">${intro}</div>
-    </div>
-
+  // Cards Logic
+  const envCard = `
     <div class="section-card">
       <div class="section-title">Battlefield & Environment</div>
       <div class="section-body">
-        <strong>Environment:</strong> ${env.name}.<br/>
-        ${env.intro}
+        <strong>Environment:</strong> ${env.name}<br/>
+        <p>${env.deployment3p}</p>
+        <p><em>${env.crewNote}</em></p>
       </div>
     </div>
+  `;
 
+  const objCard = `
     <div class="section-card">
-      <div class="section-title">Crews & Deployment</div>
-      <div class="section-body">
-        <p><strong>Crews:</strong> ${env.crewNote}</p>
-        <p><strong>Deployment (3 gangs):</strong> ${env.deployment3p}</p>
-      </div>
-    </div>
-
-    <div class="section-card">
-      <div class="section-title">Objectives</div>
+      <div class="section-title">Objectives: ${obj.label}</div>
       <div class="section-body">
         <p><strong>Primary Objective:</strong></p>
         ${formatList(obj.primaryObjective)}
-        <p><em>Primary objectives are the main path to victory; gangs should focus on these first.</em></p>
         <p><strong>Secondary Objectives:</strong></p>
         ${formatList(selectedSecondaries)}
       </div>
     </div>
+  `;
 
+  const compCard = `
     <div class="section-card">
-      <div class="section-title">Complication – ${comp.name}</div>
+      <div class="section-title">Event: ${comp.name}</div>
       <div class="section-body">
         <p>${comp.summary}</p>
         ${formatList(comp.specialRules)}
       </div>
     </div>
+  `;
 
-    <div class="section-card">
-      <div class="section-title">Roaming Horrors</div>
-      <div class="section-body">
-        ${roamingHorrorsHTML}
+  // Only show Roaming Horrors & Crystals in Underhells mode
+  let extrasCards = "";
+  if (isUnderhells) {
+    extrasCards = `
+      <div class="section-card">
+        <div class="section-title">Roaming Horrors</div>
+        <div class="section-body">${roamingHorrorsHTML}</div>
       </div>
-    </div>
-
-    <div class="section-card">
-      <div class="section-title">Data Crystals</div>
-      <div class="section-body">
-        ${dataCrystalHTML}
+      <div class="section-card">
+        <div class="section-title">Data Crystals</div>
+        <div class="section-body">${dataCrystalHTML}</div>
       </div>
-    </div>
+    `;
+  }
 
+  const endingCard = `
     <div class="section-card">
-      <div class="section-title">Ending the Battle & Rewards</div>
+      <div class="section-title">Ending & Rewards</div>
       <div class="section-body">
         <ul>
-          <li><strong>Collapse Roll:</strong> From the end of Round 4 onwards, roll a D6 at the end of each round. On Round 4 the battle ends on a 5+; on Round 5 it ends on a 4+; on Round 6 and later it ends on a 3+. The battle can also end early if only one gang remains, everyone is bottled out, or the Arbitrator calls the collapse.</li>
-          <li><strong>Scoring:</strong> Gangs earn Victory Points for achieving the <strong>Primary Objective</strong> as agreed by your group (for example, 3 VP for winning it, 1 VP for drawing it). Secondary Objectives are worth fewer points (for example, 1 VP each) and mainly break ties or add flavour.</li>
-          <li><strong>Victory:</strong> The gang with the most Victory Points at the end of the battle wins. If tied, share the victory or use a narrative decider (who escaped, who held longest, etc.).</li>
-          <li><strong>Exploration & Rewards:</strong> As a baseline, the winner gains 2 Exploration points, other gangs gain 1. Apply the extra campaign benefits suggested by this scenario: ${obj.rewardNote}</li>
+          <li><strong>Victory:</strong> ${isUnderhells ? "Standard Endgame Scoring." : "As per Primary Objective."}</li>
+          <li><strong>Rewards:</strong> ${obj.rewardNote}</li>
         </ul>
       </div>
     </div>
   `;
+
+  return headerBlock + envCard + objCard + compCard + extrasCards + endingCard;
 }
 
-// ========= MAIN GENERATION =========
+// ==========================================
+// 7. GENERATOR LOGIC
+// ==========================================
 
 function generateScenario() {
-  const env = pickRandom(environments);
-  const obj = pickRandom(objectives);
-  const comp = pickRandom(complications);
+  const mode = document.getElementById("campaignMode").value;
+  let env, obj, comp;
 
+  if (mode === "underhells") {
+    env = pickRandom(underhells_environments);
+    obj = pickRandom(underhells_objectives);
+    comp = pickRandom(underhells_complications);
+  } else {
+    // Generic Mode
+    env = pickRandom(generic_environments);
+    obj = pickRandom(generic_objectives);
+    comp = pickRandom(generic_complications);
+  }
+
+  // Update Top Keywords
   document.getElementById("envName").textContent = env.name;
   document.getElementById("envDesc").textContent = env.short;
 
@@ -404,11 +474,39 @@ function generateScenario() {
   document.getElementById("compName").textContent = comp.name;
   document.getElementById("compDesc").textContent = comp.short;
 
+  // Render HTML
   const scenarioOutput = document.getElementById("scenarioOutput");
   scenarioOutput.innerHTML = buildScenarioHTML(env, obj, comp);
 }
 
+// Init
 document.getElementById("generateBtn").addEventListener("click", generateScenario);
+// Re-generate when mode changes for instant feedback
+document.getElementById("campaignMode").addEventListener("change", generateScenario);
 
-// Generate one on first load
+// First Load
 generateScenario();
+
+  // Skull Click Logic (Additive)
+  document.querySelectorAll('.skull-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      // 1. Get the number of the clicked skull
+      // (We use closest('button') to make sure we get the button even if they clicked the path)
+      const targetCount = parseInt(e.currentTarget.dataset.count);
+
+      // 2. Loop through ALL skulls
+      document.querySelectorAll('.skull-btn').forEach(b => {
+        const btnCount = parseInt(b.dataset.count);
+        
+        // 3. Add 'active' to anything less than or equal to the clicked number
+        if (btnCount <= targetCount) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
+      });
+
+      // 4. Regenerate scenario with new player count
+      generateScenario();
+    });
+  });

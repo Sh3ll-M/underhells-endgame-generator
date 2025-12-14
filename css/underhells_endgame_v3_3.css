@@ -10,8 +10,14 @@ body {
   padding: 0;
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  /* align-items: center;  <-- REMOVED THIS (caused the jumping) */
+  align-items: flex-start; /* Starts items from the top */
   justify-content: center;
+  
+  /* Add a fixed gap at the top so it never sticks to the edge */
+  padding-top: 5rem; 
+  padding-bottom: 5rem; /* Symmetry for scrolling */
+  box-sizing: border-box;
 }
 
 .app {
@@ -47,16 +53,34 @@ h1 {
   font-size: 0.95rem;
 }
 
+/* Update the main container to push button to the right */
 .controls-row {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   align-items: center;
+  justify-content: space-between; /* This pushes the button to the far right */
   margin-bottom: 1rem;
   padding: 0.7rem 0.95rem;
   border-radius: 10px;
   background: rgba(4, 5, 10, 0.7);
   border: 1px solid #2a3146;
+}
+
+/* New wrapper for the "Campaign: Dropdown" area */
+.selector-group {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between text and box */
+}
+
+/* Style for the "Campaign:" text */
+.selector-label {
+  color: #a0a6c0;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
 }
 
 button {
@@ -125,6 +149,9 @@ button:active {
   font-size: 0.78rem;
   color: #aeb4d4;
   margin-top: 0.15rem;
+  min-height: 2.4em; 
+  line-height: 1.2;
+
 }
 
 .scenario {
@@ -279,4 +306,75 @@ ul {
     width: 68px;
     height: 68px;
   }
+}
+
+/* Updated dropdown styling */
+.mode-select {
+  padding: 0.6rem 2.5rem 0.6rem 1rem; /* Extra right padding fixes the chevron overlap */
+  border-radius: 8px;
+  background: rgba(15, 18, 32, 0.9);
+  border: 1px solid #303853;
+  color: #e2e4f0;
+  font-family: system-ui, sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+  appearance: none; /* Cleans up default browser styling */
+  /* Re-add the custom chevron arrow so it looks consistent */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23e2e4f0%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem top 50%;
+  background-size: 0.65rem auto;
+}
+
+.mode-select:hover {
+  border-color: #e238a7;
+}
+
+.mode-select focus {
+  border-color: #00f2ff; /* Cyan glow on focus */
+}
+
+
+/* --- SKULL SELECTOR STYLES --- */
+.skull-row {
+  display: flex;
+  gap: 8px;
+  background: rgba(15, 18, 32, 0.9);
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid #303853;
+}
+
+.skull-btn {
+  background: none;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.3; /* Darker by default so the "lit" ones pop more */
+  transition: all 0.2s ease;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.skull-btn svg path {
+  fill: #e2e4f0; /* Base color */
+}
+
+/* Hover State */
+.skull-btn:hover {
+  opacity: 0.8;
+  transform: scale(1.1) !important;
+}
+
+/* Active (Lit Up) State */
+.skull-btn.active {
+  opacity: 1;
+  filter: drop-shadow(0 0 5px #e238a7); /* Pink Glow */
+}
+.skull-btn.active svg path {
+  fill: #e238a7;
 }
