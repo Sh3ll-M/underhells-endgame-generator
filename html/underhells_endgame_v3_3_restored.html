@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Underhells Endgame Scenario Generator – v3.3 (Restored)</title>
+    <title>Underhells Endgame Scenario Generator - v3.3 (Restored)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../css/underhells_endgame_v3_3.css" />
   </head>
@@ -23,17 +23,17 @@
         <div class="keywords">
           <div class="keyword-card">
             <div class="keyword-label">Environment</div>
-            <div class="keyword-value" id="envName">—</div>
+            <div class="keyword-value" id="envName">-</div>
             <div class="keyword-desc" id="envDesc"></div>
           </div>
           <div class="keyword-card">
             <div class="keyword-label">Objective</div>
-            <div class="keyword-value" id="objName">—</div>
+            <div class="keyword-value" id="objName">-</div>
             <div class="keyword-desc" id="objDesc"></div>
           </div>
           <div class="keyword-card">
             <div class="keyword-label">Complication</div>
-            <div class="keyword-value" id="compName">—</div>
+            <div class="keyword-value" id="compName">-</div>
             <div class="keyword-desc" id="compDesc"></div>
           </div>
         </div>
@@ -53,26 +53,26 @@
 
       const roamingHorrorsHTML = `
   <ul>
-    <li><strong>Spawn Points:</strong> Before deploying gangs, place 4–6 Horror Spawn markers around the battlefield, mostly near the mid-board but not in deployment zones. Number them 1–6.</li>
+    <li><strong>Spawn Points:</strong> Before deploying gangs, place 4-6 Horror Spawn markers around the battlefield, mostly near the mid-board but not in deployment zones. Number them 1-6.</li>
     <li><strong>Spawning:</strong> At the start of each End phase, the player with Priority rolls a D6. On a 4+, D3 Roaming Horrors arrive. Roll a D6 for each to see which Spawn point they crawl out of and place them within 1" of that marker.</li>
-    <li><strong>Activation:</strong> After a player finishes activating a fighter, they must activate one Horror (if any remain unactivated this round) before the next player activates a fighter. Control passes around the table, but Horrors always follow their nature – cautious shooters hang back, aggressive beasts charge the nearest non-Horror fighter.</li>
+    <li><strong>Activation:</strong> After a player finishes activating a fighter, they must activate one Horror (if any remain unactivated this round) before the next player activates a fighter. Control passes around the table, but Horrors always follow their nature - cautious shooters hang back, aggressive beasts charge the nearest non-Horror fighter.</li>
     <li><strong>Defeating Horrors:</strong> Horrors are removed as soon as an Injury dice would normally be rolled for them. They give XP and count as kills at a level agreed by your Arbitrator (brood scum as gangers, big beasts as champions, etc.).</li>
   </ul>
 `;
 
       const dataCrystalHTML = `
   <ul>
-    <li><strong>Placing Stacks:</strong> Each gang places one Data Crystal Stack outside their own deployment zone before crews are deployed. Place them in positions worth fighting over – open plazas, junctions, or near central cover.</li>
-    <li><strong>Harvest Data Crystal (Basic):</strong> A fighter within 1" of a Stack may attempt to harvest once per activation. They make an Intelligence test; on a success they take a Data Crystal token. On a failure, they disturb the brood – add +1 to the next Roaming Horrors spawn roll.</li>
+    <li><strong>Placing Stacks:</strong> Each gang places one Data Crystal Stack outside their own deployment zone before crews are deployed. Place them in positions worth fighting over - open plazas, junctions, or near central cover.</li>
+    <li><strong>Harvest Data Crystal (Basic):</strong> A fighter within 1" of a Stack may attempt to harvest once per activation. They make an Intelligence test; on a success they take a Data Crystal token. On a failure, they disturb the brood - add +1 to the next Roaming Horrors spawn roll.</li>
     <li><strong>Fragile Structure:</strong> When a Stack is hit by a weapon with the Blaze or Blast traits, roll a D6:
       <ul>
-        <li>1 – Catastrophic Burst: Everything within a short radius (for example, D3+3") takes a strong hit and is Pinned. That Stack cannot be harvested again.</li>
-        <li>2–3 – Partial Detonation: Models within 3" take a weaker hit and are Pinned. Future Harvest attempts from that Stack suffer –1 to the Intelligence test.</li>
-        <li>4–6 – Glowing but Stable: No extra effect… this time.</li>
+        <li>1 - Catastrophic Burst: Everything within a short radius (for example, D3+3") takes a strong hit and is Pinned. That Stack cannot be harvested again.</li>
+        <li>2-3 - Partial Detonation: Models within 3" take a weaker hit and are Pinned. Future Harvest attempts from that Stack suffer -1 to the Intelligence test.</li>
+        <li>4-6 - Glowing but Stable: No extra effect... this time.</li>
       </ul>
     </li>
     <li><strong>Carrying Crystals:</strong> A fighter can carry only one Crystal. If they go Out of Action, place the token where they fell. Other fighters can pick it up by ending their move in base contact.</li>
-    <li><strong>After the Battle:</strong> Crystals can be cashed in for credits, XP or random skills according to your campaign’s Data Crystal rewards table, or a simplified version agreed at the table.</li>
+    <li><strong>After the Battle:</strong> Crystals can be cashed in for credits, XP or random skills according to your campaign's Data Crystal rewards table, or a simplified version agreed at the table.</li>
   </ul>
 `;
 
@@ -82,8 +82,8 @@
           key: "data_plaza",
           name: "Collapsed Data Plaza",
           short: "Central plaza choked with broken crystal pylons and rubble.",
-          intro: `The old plaza once served as a nexus for the vault’s data flows, its crystalline pylons now jutting from the rubble like broken teeth. Every fragment still hums with psychic residue, a lure to the Broodmind.`,
-          deployment3p: `Set up a mostly flat board with a central open plaza roughly 12" across, filled with low scatter terrain and at least one larger 'data pylon' feature. Each gang chooses a different table edge and deploys within 6" of their edge and at least 10" from the plaza’s centre.`,
+          intro: `The old plaza once served as a nexus for the vault's data flows, its crystalline pylons now jutting from the rubble like broken teeth. Every fragment still hums with psychic residue, a lure to the Broodmind.`,
+          deployment3p: `Set up a mostly flat board with a central open plaza roughly 12" across, filled with low scatter terrain and at least one larger 'data pylon' feature. Each gang chooses a different table edge and deploys within 6" of their edge and at least 10" from the plaza's centre.`,
           crewNote: `Each gang selects up to 6 fighters for their starting crew using any method your Arbitrator allows. Reinforcements are only used if you all agree before the battle.`,
         },
         {
@@ -98,16 +98,16 @@
           key: "pump_corridor",
           name: "Pump Corridor",
           short: "Long, straight kill-zone blocked by massive pumping engines.",
-          intro: `A long maintenance corridor runs between thudding pump housings, the floor buckling from constant tremors. It’s one of the last stable routes still leading deeper into the brood’s nest – and everyone knows it.`,
-          deployment3p: `Set up a mostly flat table with a clear 'corridor' lane running along the long axis, broken by large pump or generator pieces. One gang deploys at one short edge within 8"; the other two deploy along opposite long edges within 6" of their edge and 10" from the short edge gang’s deployment zone.`,
-          crewNote: `Each gang selects up to 5–6 fighters. Narrow lanes make template weapons and careful positioning very valuable.`,
+          intro: `A long maintenance corridor runs between thudding pump housings, the floor buckling from constant tremors. It's one of the last stable routes still leading deeper into the brood's nest - and everyone knows it.`,
+          deployment3p: `Set up a mostly flat table with a clear 'corridor' lane running along the long axis, broken by large pump or generator pieces. One gang deploys at one short edge within 8"; the other two deploy along opposite long edges within 6" of their edge and 10" from the short edge gang's deployment zone.`,
+          crewNote: `Each gang selects up to 5-6 fighters. Narrow lanes make template weapons and careful positioning very valuable.`,
         },
         {
           key: "fungal_square",
           name: "Fungal Transit Square",
           short:
             "Open square choked with phosphorescent fungi and broken transports.",
-          intro: `Abandoned transports sit half-submerged in fungal overgrowth, their hulls split open and interiors thick with growths that pulse faintly in time with the hive’s shuddering heartbeat.`,
+          intro: `Abandoned transports sit half-submerged in fungal overgrowth, their hulls split open and interiors thick with growths that pulse faintly in time with the hive's shuddering heartbeat.`,
           deployment3p: `Create an open 'square' in the middle of the battlefield, filled with wrecked vehicles or cargo and several dense fungal patches that block line of sight. Each gang deploys in a 6"-deep zone along a different table edge.`,
           crewNote: `Each gang uses up to 6 fighters. Fighting is likely to be close-range and vicious as fighters circle the square and duck through fungal cover.`,
         },
@@ -118,7 +118,7 @@
             "Central raised platform with ramps and surrounding concourse.",
           intro: `Once, workers queued here for the lifts up-hive. Now the concourse is cracked and listing, the central platform hanging over a shaft that exhales cold, damp air and distant screams.`,
           deployment3p: `Place a single raised platform or dais near the centre of the table with at least two ramps or stairs leading up to it. Surround it with mostly flat ground and low cover. Each gang deploys within 6" of a different table corner, at least 8" from the central platform.`,
-          crewNote: `Each gang selects up to 6 fighters. The central platform is key – controlling it is dangerous but powerful.`,
+          crewNote: `Each gang selects up to 6 fighters. The central platform is key - controlling it is dangerous but powerful.`,
         },
       ];
 
@@ -130,7 +130,7 @@
           label: "Secure the Data Cache",
           short:
             "Grab as many crystals as possible before the sector collapses.",
-          summary: `The gangs have reached one of the last intact crystal caches in this section of the Underhells. Every shard could tilt the war – or feed the Patriarch faster.`,
+          summary: `The gangs have reached one of the last intact crystal caches in this section of the Underhells. Every shard could tilt the war - or feed the Patriarch faster.`,
           primaryObjective: [
             `At the end of the battle, the gang holding (on fighters or in base contact) the most Data Crystals is victorious.`,
           ],
@@ -147,7 +147,7 @@
           title: "Hold the Breach",
           label: "Control the Kill Zone",
           short: "Hold the only gap standing between you and the swarm.",
-          summary: `A crumbling bulkhead marks the line beyond which the Underhells are lost. As horrors batter at the far side, the gangs fight to prove they are the ones who can hold the breach – or die trying.`,
+          summary: `A crumbling bulkhead marks the line beyond which the Underhells are lost. As horrors batter at the far side, the gangs fight to prove they are the ones who can hold the breach - or die trying.`,
           primaryObjective: [
             `At the end of the battle, the gang with the most Standing and Pinned fighters within 6" of the designated Breach marker is victorious.`,
           ],
@@ -156,7 +156,7 @@
             `Unbroken Line: At the end of any End phase, be the only gang with any fighters in the Breach area.`,
             `No Retreat: End the battle without voluntarily moving any of your fighters off the battlefield.`,
           ],
-          rewardNote: `The winning gang’s Leader may gain bonus XP or Reputation for the stand, as agreed by the Arbitrator.`,
+          rewardNote: `The winning gang's Leader may gain bonus XP or Reputation for the stand, as agreed by the Arbitrator.`,
         },
       ];
 
@@ -165,7 +165,7 @@
           key: "broodmind_pulse",
           name: "Broodmind Pulse",
           short: "Psychic waves unsettle fighters and draw more horrors.",
-          summary: `The Broodmind’s attention lashes this sector, sending waves of panic and murderous certainty through every exposed mind.`,
+          summary: `The Broodmind's attention lashes this sector, sending waves of panic and murderous certainty through every exposed mind.`,
           specialRules: [
             `Warp-Touched: At the start of each round after the first, each gang nominates one fighter on the battlefield. That fighter must take a Willpower or Cool check (whichever is worse). On a fail, they suffer some form of Insanity or debilitating effect agreed by the group (e.g. must move towards the nearest enemy, or loses one action this round).`,
             `Hungry Gaze: The first time each round that any fighter fails a test to Harvest, Search or otherwise interact with objectives, add +1 to the next Roaming Horrors spawn roll.`,
@@ -178,38 +178,38 @@
 
       const ferrymanQuotes = {
         loot: [
-          "You find something shiny down here, it’s either cursed or claimed. Usually both.",
+          "You find something shiny down here, it's either cursed or claimed. Usually both.",
           "I once tried selling a crystal I found in the Underhells. Turns out it was selling me.",
-          "Pick fast, shoot faster. Everything in the dark’s got longer arms than you.",
+          "Pick fast, shoot faster. Everything in the dark's got longer arms than you.",
           "Salvage is what the survivors call grave-robbing.",
           "Never pocket something that hums. Learned that one the expensive way.",
         ],
         hold: [
-          "If you think holding ground’s hard, try doing it while the ground’s holding back.",
-          "The trick to surviving a stand? Don’t.",
-          "Walls don’t care who bleeds on them, so long as someone does.",
-          "They say no one’s ever held the Breach. They ain’t met me.",
+          "If you think holding ground's hard, try doing it while the ground's holding back.",
+          "The trick to surviving a stand? Don't.",
+          "Walls don't care who bleeds on them, so long as someone does.",
+          "They say no one's ever held the Breach. They ain't met me.",
           "Keep your head down and your gun hot. The rest is heresy.",
         ],
         escape: [
           "You want out? Then you better run like the dark owes you money.",
           "Never trust a door that opens too easy. Or a friend who does.",
-          "You’ll smell freedom right before the sump gas hits.",
-          "There’s no up in the Underhells. Just slower ways to go down.",
+          "You'll smell freedom right before the sump gas hits.",
+          "There's no up in the Underhells. Just slower ways to go down.",
           "First one to the lift lives long enough to regret it.",
         ],
         cull: [
-          "I’ve seen things with more teeth than sense. Same goes for gangers.",
+          "I've seen things with more teeth than sense. Same goes for gangers.",
           "You kill one horror, and ten come sniffing for the noise. Fair trade.",
           "Nothing personal, brood-thing. Just professional.",
-          "If it bleeds, it’s probably breeding.",
+          "If it bleeds, it's probably breeding.",
           "Hunting horrors is easy. Stopping is the hard part.",
         ],
         generic: [
-          "If it smells like hope, it’s probably gas. Don’t breathe it in.",
-          "Underhells don’t kill you quick — they wait ‘til you start thinking you’ll make it.",
+          "If it smells like hope, it's probably gas. Don't breathe it in.",
+          "Underhells don't kill you quick - they wait 'til you start thinking you'll make it.",
           "Never trust anything that hums back when you swear at it.",
-          "If you can hear them in the walls, you’re already too late.",
+          "If you can hear them in the walls, you're already too late.",
           "Down here, the only thing stable is death.",
         ],
       };
@@ -249,7 +249,7 @@
     <div class="scenario-header-block">
       <div class="scenario-header">
         <h2 class="scenario-title">${obj.title}</h2>
-        <div class="scenario-tag">UNDERHELLS • ENDGAME • 3-PLAYER</div>
+        <div class="scenario-tag">UNDERHELLS - ENDGAME - 3-PLAYER</div>
       </div>
 
       <div class="ferryman-block">
@@ -258,13 +258,13 @@
         </div>
         <div class="ferryman-quote-box">
           <div class="ferryman-quote">
-            <span class="ferryman-icon">☠️</span>
+            <span class="ferryman-icon">*</span>
             <span>${vornLine}</span>
           </div>
-          <div class="ferryman-credit">— Vorn Kadd, Ferryman of the Underhells</div>
+          <div class="ferryman-credit">- Vorn Kadd, Ferryman of the Underhells</div>
           <div class="ferryman-meta">
             <span class="ferryman-name">Vorn Kadd</span>
-            <span class="ferryman-role"> • Ferryman of the Underhells</span>
+            <span class="ferryman-role"> - Ferryman of the Underhells</span>
           </div>
         </div>
       </div>
@@ -300,7 +300,7 @@
     </div>
 
     <div class="section-card">
-      <div class="section-title">Complication – ${comp.name}</div>
+      <div class="section-title">Complication - ${comp.name}</div>
       <div class="section-body">
         <p>${comp.summary}</p>
         ${formatList(comp.specialRules)}

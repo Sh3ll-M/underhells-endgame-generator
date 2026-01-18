@@ -331,7 +331,7 @@ ul {
   border-color: #e238a7;
 }
 
-.mode-select focus {
+.mode-select:focus {
   border-color: #00f2ff; /* Cyan glow on focus */
 }
 

@@ -2,10 +2,10 @@
 
 A small static site that generates 3-player endgame scenarios for Underhells (v3.3). It contains:
 
-- `index.html` — single-page UI
-- `css/underhells_endgame_v3_3.css` — styles
-- `js/underhells_endgame_v3_3.js` — generator logic & data tables
-- `assets/` — image and other static assets
+- `index.html` - single-page UI
+- `css/underhells_endgame_v3_3.css` - styles
+- `js/underhells_endgame_v3_3.js` - generator logic & data tables
+- `assets/` - image and other static assets
 
 Usage:
 

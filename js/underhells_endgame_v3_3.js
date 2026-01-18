@@ -6,7 +6,7 @@
 
 const roamingHorrorsHTML = `
   <ul>
-    <li><strong>Spawn Points:</strong> Before deploying gangs, place 4–6 Horror Spawn markers around the battlefield, mostly near the mid-board but not in deployment zones. Number them 1–6.</li>
+    <li><strong>Spawn Points:</strong> Before deploying gangs, place 4-6 Horror Spawn markers around the battlefield, mostly near the mid-board but not in deployment zones. Number them 1-6.</li>
     <li><strong>Spawning:</strong> At the start of each End phase, the player with Priority rolls a D6. On a 4+, D3 Roaming Horrors arrive. Roll a D6 for each to see which Spawn point they crawl out of and place them within 1" of that marker.</li>
     <li><strong>Activation:</strong> After a player finishes activating a fighter, they must activate one Horror (if any remain unactivated this round) before the next player activates a fighter.</li>
     <li><strong>Defeating Horrors:</strong> Horrors are removed as soon as an Injury dice would normally be rolled for them. They give XP and count as kills as agreed by your Arbitrator.</li>
@@ -30,7 +30,7 @@ const underhells_environments = [
   {
     name: "Collapsed Data Plaza",
     short: "Central plaza choked with broken crystal pylons and rubble.",
-    intro: `The old plaza once served as a nexus for the vault’s data flows, its crystalline pylons now jutting from the rubble like broken teeth. Every fragment still hums with psychic residue.`,
+    intro: `The old plaza once served as a nexus for the vault's data flows, its crystalline pylons now jutting from the rubble like broken teeth. Every fragment still hums with psychic residue.`,
     deployment3p: `Central open plaza (12" wide). Each gang deploys within 6" of a different table edge, at least 10" from the center.`,
     crewNote: `Custom Selection (6 fighters).`
   },
@@ -44,7 +44,7 @@ const underhells_environments = [
   {
     name: "Pump Corridor",
     short: "Long, straight kill-zone blocked by massive pumping engines.",
-    intro: `A long maintenance corridor runs between thudding pump housings. It’s one of the last stable routes leading deeper into the brood’s nest.`,
+    intro: `A long maintenance corridor runs between thudding pump housings. It's one of the last stable routes leading deeper into the brood's nest.`,
     deployment3p: `Long table axis. One gang on a short edge; two gangs on opposite long edges.`,
     crewNote: `Custom Selection (6 fighters).`
   },
@@ -70,7 +70,7 @@ const underhells_objectives = [
     title: "The Last Crystals",
     label: "Secure the Data Cache",
     short: "Grab as many crystals as possible.",
-    summary: `The gangs have reached one of the last intact crystal caches. Every shard could tilt the war – or feed the Patriarch faster.`,
+    summary: `The gangs have reached one of the last intact crystal caches. Every shard could tilt the war - or feed the Patriarch faster.`,
     primaryObjective: [`The gang holding the most Data Crystals at the end of the battle wins.`],
     secondaryObjectives: [`First Haul`, `Don't Drop It`, `Deny the Hoard`],
     rewardNote: `Winner gains 2 Exploration points.`
@@ -99,8 +99,8 @@ const underhells_objectives = [
     category: "cull",
     title: "Cull the Swarm",
     label: "Slaughter Roaming Horrors",
-    short: "Race to rack up kills on the brood’s servants.",
-    summary: `If the swarm isn’t thinned here, it will break through. The gangs descend to see who can butcher the most horrors.`,
+    short: "Race to rack up kills on the brood's servants.",
+    summary: `If the swarm isn't thinned here, it will break through. The gangs descend to see who can butcher the most horrors.`,
     primaryObjective: [`The gang with the most Victory Points from destroying Roaming Horrors wins.`],
     secondaryObjectives: [`First Blooded`, `Efficient Killer`, `Collateral Damage`],
     rewardNote: `Bonus Exploration for high kill counts.`
@@ -110,7 +110,7 @@ const underhells_objectives = [
     title: "Grave-Salvage",
     label: "Loot the Dead",
     short: "Strip a wrecked encampment before it sinks.",
-    summary: `An old Archeo-hunter camp is sinking into the lower levels. What’s left inside could keep a gang alive for another cycle.`,
+    summary: `An old Archeo-hunter camp is sinking into the lower levels. What's left inside could keep a gang alive for another cycle.`,
     primaryObjective: [`The gang controlling the most Loot tokens wins.`],
     secondaryObjectives: [`Under Fire`, `Pack Mules`, `Leave Only Shells`],
     rewardNote: `Loot can be converted to Credits.`
@@ -121,7 +121,7 @@ const underhells_complications = [
   {
     name: "Broodmind Pulse",
     short: "Psychic waves unsettle fighters.",
-    summary: "The Broodmind’s attention lashes this sector, sending waves of panic through every exposed mind.",
+    summary: "The Broodmind's attention lashes this sector, sending waves of panic through every exposed mind.",
     specialRules: [`Warp-Touched: Start of round, one fighter per gang tests Willpower or becomes Insane.`, `Hungry Gaze: Failed objective tests increase Horror spawn rates.`],
     secondaryExtras: [`Stare it Down`]
   },
@@ -269,23 +269,23 @@ const generic_complications = [
 // ==========================================
 const ferrymanQuotes = {
   loot: [
-    "You find something shiny down here, it’s either cursed or claimed. Usually both.",
+    "You find something shiny down here, it's either cursed or claimed. Usually both.",
     "I once tried selling a crystal I found in the Underhells. Turns out it was selling me."
   ],
   hold: [
-    "If you think holding ground’s hard, try doing it while the ground’s holding back.",
-    "Walls don’t care who bleeds on them, so long as someone does."
+    "If you think holding ground's hard, try doing it while the ground's holding back.",
+    "Walls don't care who bleeds on them, so long as someone does."
   ],
   escape: [
     "You want out? Then you better run like the dark owes you money.",
-    "There’s no up in the Underhells. Just slower ways to go down."
+    "There's no up in the Underhells. Just slower ways to go down."
   ],
   cull: [
-    "I’ve seen things with more teeth than sense. Same goes for gangers.",
+    "I've seen things with more teeth than sense. Same goes for gangers.",
     "You kill one horror, and ten come sniffing for the noise. Fair trade."
   ],
   generic: [
-    "If it smells like hope, it’s probably gas.",
+    "If it smells like hope, it's probably gas.",
     "Down here, the only thing stable is death."
   ]
 };
@@ -357,7 +357,7 @@ function buildScenarioHTML(env, obj, comp) {
       <div class="scenario-header-block">
         <div class="scenario-header">
           <h2 class="scenario-title" style="border-bottom-color: #e238a7;">${obj.title}</h2>
-          <div class="scenario-tag">UNDERHELLS • ${playerCount}-PLAYER</div>
+          <div class="scenario-tag">UNDERHELLS - ${playerCount}-PLAYER</div>
         </div>
         <div class="ferryman-block">
           <div class="ferryman-portrait">
@@ -365,10 +365,10 @@ function buildScenarioHTML(env, obj, comp) {
           </div>
           <div class="ferryman-quote-box">
             <div class="ferryman-quote">
-              <span class="ferryman-icon">☠️</span>
+              <span class="ferryman-icon">*</span>
               <span>${vornLine}</span>
             </div>
-            <div class="ferryman-credit">— Vorn Kadd, Ferryman of the Underhells</div>
+            <div class="ferryman-credit">- Vorn Kadd, Ferryman of the Underhells</div>
           </div>
         </div>
         <div class="intro">${intro}</div>
@@ -382,7 +382,7 @@ function buildScenarioHTML(env, obj, comp) {
         <div class="scenario-header">
           <h2 class="scenario-title" style="border-bottom-color: #2bcf6a;">${obj.title}</h2>
           <div class="scenario-tag" style="background: linear-gradient(90deg, #2bcf6a 0%, #00f2ff 100%); color: #05060a;">
-            HIVE WAR • ${playerCount}-PLAYER
+            HIVE WAR - ${playerCount}-PLAYER
           </div>
         </div>
         <div class="intro" style="margin-top: 1rem;">${intro}</div>
